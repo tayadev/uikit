@@ -1,0 +1,39 @@
+#!/bin/sh
+
+. "$(command -v use)"
+use '@gh/tayadev/ShellStuff:textstyle.sh'
+use '@gh/tayadev/ShellStuff:cursor.sh'
+
+uikit_init() {
+    stty=$(stty -g)
+    stty -icanon -echo
+    cursor_hide
+    trap "uikit_exit" EXIT INT
+}
+
+uikit_exit() {
+    cursor_show
+    stty "$stty"
+}
+
+uikit_key() {
+    input=$(dd ibs=1 count=1 2>/dev/null)
+    if [ "$input" = '' ]; then
+        input=$(dd ibs=1 count=2 2>/dev/null)
+    fi
+
+    case $input in
+        '') printf 'enter';;
+        '[A') printf 'up';;
+        '[B') printf 'down';;
+        '[C') printf 'right';;
+        '[D') printf 'left';;
+        *) printf "$input";;
+    esac
+}
+
+uikit_quit() {
+    exit 0
+}
+
+uikit_init
