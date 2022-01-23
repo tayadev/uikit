@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# Usage: bar <value> <max>
+
+bar() {
+    for i in $(seq $(($1/8))); do printf '█'; done
+    printf $(printf '▏,▎,▍,▌,▋,▊,▉,█' | cut -d',' -f $(($1%8+1)))
+    for i in $(seq $(($2/8 - $1/8))); do printf ' '; done
+}

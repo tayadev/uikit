@@ -1,0 +1,9 @@
+#!/bin/sh
+
+. "$(command -v use)"
+use "tayadev/ShellStuff:textstyle.sh"
+
+print() { echo "${magenta}[•]$reset $1"; }
+printInfo() { echo "${yellow}[i]$reset $1"; }
+printSuccess() { echo "${green}[✓]$reset $1"; }
+printError() { echo "${red}[×]$reset $1"; }

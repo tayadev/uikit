@@ -28,6 +28,7 @@ uikit_key() {
         '[B') printf 'down';;
         '[C') printf 'right';;
         '[D') printf 'left';;
+        $'\177') printf 'backspace';;
         *) printf "$input";;
     esac
 }
